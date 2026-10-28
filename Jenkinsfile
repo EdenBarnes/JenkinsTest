@@ -1,14 +1,7 @@
 // Multibranch Pipeline: Jenkins runs this file for every branch and PR.
 pipeline {
 
-    // Build inside a Python container so the agent needs only Docker.
-    // (No Docker? Replace with `agent any` and make sure python3 + venv exist.)
-    agent {
-        docker {
-            image 'python:3.12-slim'
-            args  '-u root:root'   // simple default; see README for non-root setup
-        }
-    }
+    agent { label 'python' }
 
     options {
         timestamps()
